@@ -15,9 +15,10 @@ function scrapeHTML() {
   console.log(extraFee)
 
   const list = cart.querySelector('ul')
-  cart.querySelector('ul').children.forEach((person) => {
+  const liElements = cart.querySelector('ul').children
+  // cart.querySelector('ul').children.forEach((person) => {
+  for (let person of liElements) {
     if (person.tagName === "LI") {
-      console.log(person)
       const name = person.children[2].children[0].children[0].children[0].innerText
       // TODO: For each item....
       const quantity = Number.parseInt(person.children[2].children[2].children[0].children[0].children[0].value, 10) // STRING
@@ -28,7 +29,7 @@ function scrapeHTML() {
       console.log(`${name}:`)
       console.log(`¥${total} + ¥${extraFee} => ¥${total + extraFee}`)
     }
-  })
+  }
 
 
   // Remove yen:
