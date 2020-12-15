@@ -3,17 +3,19 @@ function scrapeHTML() {
   // const deliveryCharge = document.querySelector('#delivery-charge')
   // console.log(serviceCharge)
   // console.log(deliveryCharge)
+  document.querySelector('[role="search"]').nextElementSibling.children[0].children[1].click();
   const list = document.querySelector('[role="search"]').nextElementSibling.children[1].children[0].children[2].querySelector('ul')
   console.log(list)
 }
 
+// Didn't work... I don't think the order is loaded yet....
+// document.addEventListener("DOMContentLoaded", {
+// }
 chrome.runtime.onMessage.addListener(
-  document.addEventListener("DOMContentLoaded",
-    function(request, sender, sendResponse) {
-      console.log(request);
-      if (request.action === 'scrape') scrapeHTML();
-    }
-  )
+  function(request, sender, sendResponse) {
+    console.log(request);
+    if (request.action === 'scrape') scrapeHTML();
+  }
 );
 
 // Our image replacement script
