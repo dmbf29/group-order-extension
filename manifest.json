@@ -8,6 +8,16 @@
     "tabs",
     "activeTab"
   ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "scripts/scraper.js"
+      ]
+    }
+  ],
   "browser_action": {
     "default_popup": "popup.html",
     "default_title": "Group Order"
