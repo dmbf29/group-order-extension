@@ -5,7 +5,16 @@ function scrapeHTML() {
   // console.log(deliveryCharge)
   document.querySelector('[role="search"]').nextElementSibling.children[0].children[1].click();
   const list = document.querySelector('[role="search"]').nextElementSibling.children[1].children[0].children[2].querySelector('ul')
-  console.log(list)
+  list.querySelectorAll('li').forEach((person) => {
+    // console.log(person)
+    const name = person.children[2].children[0].children[0].children[0].innerText
+    // TODO: For each item....
+    const quantity = person.children[2].children[2].children[0].children[0].children[0].value // STRING
+    let price = person.children[2].children[2].children[2].children[0].children[0].children[2].innerText
+
+    console.log(`${name}:`)
+    console.log(`${price} x ${quantity}`)
+  })
 }
 
 // Didn't work... I don't think the order is loaded yet....
@@ -13,7 +22,6 @@ function scrapeHTML() {
 // }
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    console.log(request);
     if (request.action === 'scrape') scrapeHTML();
   }
 );
