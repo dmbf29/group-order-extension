@@ -4,9 +4,9 @@ body {
   width: 300px;
   margin: 0;
   padding: 1em;
-  color: white;
-  background: radial-gradient(#2C4792, #162346);
-  border: solid 2px #2C4792;
+  color: black;
+  background-color: white;
+  border: solid 4px black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,18 +26,18 @@ button {
   font-size: 1.5em;
   padding: 0 1em;
   margin: 0.5em;
-  background: #2D8BDA;
-  opacity: 0.9;
+  background: black;
+  opacity: 1;
   color: white;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   display: flex;
   align-items: center;
   outline: none;
 }
 
 button:hover {
-  border: solid 1px white;
-  opacity: 1;
+  /*border: solid 1px white;*/
+  opacity: 0.8;
 }
 
 button:disabled {
@@ -46,5 +46,5 @@ button:disabled {
 
 button span {
   width: 25%;
-  font-size: 2em;
+  /*font-size: 1em;*/
 }
