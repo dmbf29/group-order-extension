@@ -1,12 +1,21 @@
 function scrapeHTML() {
-  // const serviceCharge = document.querySelector('#main-content > div.b5.b6.b7.b8.p8.bc.f1 > div.k2.pc > ul > li:nth-child(3) > div:nth-child(2) > span')
-  // const deliveryCharge = document.querySelector('#delivery-charge')
-  // console.log(serviceCharge)
-  // console.log(deliveryCharge)
-  document.querySelector('[role="search"]').nextElementSibling.children[0].children[1].click();
-  const list = document.querySelector('[role="search"]').nextElementSibling.children[1].children[0].children[2].querySelector('ul')
+  // document.querySelector('[role="search"]').nextElementSibling.children[0].children[1].click();
+  const cart = document.querySelector('header a').nextElementSibling
+  // Open the modal to load it
+  cart.children[0].children[1].click();
+
+  // Get number of people in order
+  const numOfPeople = cart.querySelectorAll('li').length
+
+  // Get extra fees
+  const serviceFee = document.querySelector('main').children[1].children[3].querySelectorAll('li')[1].children[1].innerText
+  const deliveryFee = document.querySelector('main').children[1].children[3].querySelectorAll('li')[2].children[1].querySelectorAll('span')[1].innerText
+  const extraFee = ((Number.(serviceFee.substring(1), 10) + Number.parseInt(deliveryFee.substring(1), 10)) / numOfPeople).toFixed(2)
+
+  console.log(extraFee)
+
+  const list = cart.querySelector('ul')
   list.querySelectorAll('li').forEach((person) => {
-    // console.log(person)
     const name = person.children[2].children[0].children[0].children[0].innerText
     // TODO: For each item....
     const quantity = person.children[2].children[2].children[0].children[0].children[0].value // STRING
@@ -15,6 +24,10 @@ function scrapeHTML() {
     console.log(`${name}:`)
     console.log(`${price} x ${quantity}`)
   })
+
+
+  // Remove yen:
+  // str.substring(1);
 }
 
 // Didn't work... I don't think the order is loaded yet....
