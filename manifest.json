@@ -13,9 +13,7 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": [
-        "scripts/scraper.js"
-      ]
+      "js": ["scripts/scraper.js"]
     }
   ],
   "browser_action": {
