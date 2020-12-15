@@ -29,15 +29,14 @@ button {
   background: black;
   opacity: 1;
   color: white;
-  /*border-radius: 5px;*/
   display: flex;
   align-items: center;
+  justify-content: center;
   outline: none;
 }
 
 button:hover {
-  /*border: solid 1px white;*/
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 button:disabled {
@@ -45,6 +44,5 @@ button:disabled {
 }
 
 button span {
-  width: 25%;
-  /*font-size: 1em;*/
+  margin-right: 8px;
 }
