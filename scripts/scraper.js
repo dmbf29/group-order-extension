@@ -8,11 +8,9 @@ function scrapeHTML() {
   const numOfPeople = cart.querySelectorAll('li').length
 
   // Get extra fees
-  const serviceFee = document.querySelector('main').children[1].children[3].querySelectorAll('li')[1].children[1].innerText.substring(1)
-  const deliveryFee = document.querySelector('main').children[1].children[3].querySelectorAll('li')[2].children[1].querySelectorAll('span')[1].innerText.substring(1)
+  const serviceFee = document.querySelector('main').children[1].children[3].querySelectorAll('li')[1].children[1].innerText.substring(1).replace(/,/g, "");
+  const deliveryFee = document.querySelector('main').children[1].children[3].querySelectorAll('li')[2].children[1].querySelectorAll('span')[1].innerText.substring(1).replace(/,/g, "");
   const extraFee = ((Number.parseInt(serviceFee, 10) + Number.parseInt(deliveryFee, 10)) / numOfPeople ).toFixed(2)
-
-  console.log(extraFee)
 
   const list = cart.querySelector('ul')
   const liElements = cart.querySelector('ul').children
@@ -22,7 +20,7 @@ function scrapeHTML() {
       const name = person.children[2].children[0].children[0].children[0].innerText
       // TODO: For each item....
       const quantity = Number.parseInt(person.children[2].children[2].children[0].children[0].children[0].value, 10) // STRING
-      let price = Number.parseInt(person.children[2].children[2].children[2].children[0].children[0].children[2].innerText.substring(1), 10);
+      let price = Number.parseInt(person.children[2].children[2].children[2].children[0].children[0].children[2].innerText.substring(1).replace(/,/g, ""), 10);
       const total = quantity * price
 
       // show for each person
@@ -30,10 +28,6 @@ function scrapeHTML() {
       console.log(`¥${total} + ¥${extraFee} => ¥${total + extraFee}`)
     }
   }
-
-
-  // Remove yen:
-  // str.substring(1);
 }
 
 // Didn't work... I don't think the order is loaded yet....
