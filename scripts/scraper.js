@@ -36,7 +36,8 @@ function scrapeHTML() {
         price = Number.parseInt(item.children[2].children[0].children[0].children[2].innerText.substring(1).replace(/,/g, ""), 10);
         total += (quantity * price)
       })
-      console.log(`¥${total} + ¥${extraFee} => ¥${total + extraFee}`)
+      const personTotal = total + extraFee
+      console.log(`¥${total} + ¥${extraFee} => ¥${personTotal}`)
     }
   }
 }
