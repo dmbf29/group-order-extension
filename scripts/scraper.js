@@ -18,13 +18,24 @@ function scrapeHTML() {
   for (let person of liElements) {
     if (person.tagName === "LI") {
       const name = person.children[2].children[0].children[0].children[0].innerText
-      // TODO: For each item....
-      const quantity = Number.parseInt(person.children[2].children[2].children[0].children[0].children[0].value, 10) // STRING
-      let price = Number.parseInt(person.children[2].children[2].children[2].children[0].children[0].children[2].innerText.substring(1).replace(/,/g, ""), 10);
-      const total = quantity * price
+      const items = [person.children[2].children[2]]
+      let total = 0
+      let quantity = 0
+      let price = 0
+      // For each item....
+      hrs = person.children[2].querySelectorAll('hr')
+      if (hrs.length > 0 ) {
+        hrs.forEach((hr) => {
+          items.push(hr.nextElementSibling)
+        })
+      }
 
-      // show for each person
       console.log(`${name}:`)
+      items.forEach((item) => {
+        quantity = Number.parseInt(item.children[0].children[0].children[0].value, 10) // STRING
+        price = Number.parseInt(item.children[2].children[0].children[0].children[2].innerText.substring(1).replace(/,/g, ""), 10);
+        total += (quantity * price)
+      })
       console.log(`¥${total} + ¥${extraFee} => ¥${total + extraFee}`)
     }
   }
