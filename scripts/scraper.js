@@ -10,7 +10,7 @@ function scrapeHTML() {
   // Get extra fees
   const serviceFee = document.querySelector('main').children[1].children[3].querySelectorAll('li')[1].children[1].innerText.substring(1).replace(/,/g, "");
   const deliveryFee = document.querySelector('main').children[1].children[3].querySelectorAll('li')[2].children[1].querySelectorAll('span')[1].innerText.substring(1).replace(/,/g, "");
-  const extraFee = ((Number.parseInt(serviceFee, 10) + Number.parseInt(deliveryFee, 10)) / numOfPeople ).toFixed(2)
+  const extraFee = parseFloat(((Number.parseInt(serviceFee, 10) + Number.parseInt(deliveryFee, 10)) / numOfPeople ).toFixed(2))
 
   const list = cart.querySelector('ul')
   const liElements = cart.querySelector('ul').children
@@ -36,8 +36,7 @@ function scrapeHTML() {
         price = Number.parseInt(item.children[2].children[0].children[0].children[2].innerText.substring(1).replace(/,/g, ""), 10);
         total += (quantity * price)
       })
-      const personTotal = total + extraFee
-      console.log(`¥${total} + ¥${extraFee} => ¥${personTotal}`)
+      console.log(`¥${total} + ¥${extraFee} => ¥${total + extraFee}`)
     }
   }
 }
